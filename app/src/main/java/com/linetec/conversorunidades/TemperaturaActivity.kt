@@ -1,14 +1,14 @@
 package com.linetec.conversorunidades
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 
 class TemperaturaActivity : AppCompatActivity() {
@@ -24,7 +24,9 @@ class TemperaturaActivity : AppCompatActivity() {
         var textA = ""
         var textB = ""
 
-         val textWatcherA: TextWatcher = object : TextWatcher {
+        val context = applicationContext
+
+         var textWatcherA: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -33,11 +35,11 @@ class TemperaturaActivity : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable?) {
                 textA = editable.toString()
-                edB.setText(textA)
+                edB.setText(tempConverTo(textA,1).toString())
             }
         }
 
-        val textWatcherB: TextWatcher = object : TextWatcher {
+        var textWatcherB: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -46,20 +48,25 @@ class TemperaturaActivity : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable?) {
                 textB = editable.toString()
-                edB.setText(textB)
+                edA.setText(tempConverTo(textB,0).toString())
             }
         }
 
-        edA.setOnClickListener {
-            edB.removeTextChangedListener(textWatcherB)
-            edA.addTextChangedListener(textWatcherA)
+        edA.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                edA.addTextChangedListener(textWatcherA)
+                edB.removeTextChangedListener(textWatcherB)
+                //Toast.makeText(context, "Entró a A", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        edB.setOnClickListener {
-            edB.removeTextChangedListener(textWatcherA)
-            edA.addTextChangedListener(textWatcherB)
+        edB.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                edB.addTextChangedListener(textWatcherB)
+                edA.removeTextChangedListener(textWatcherA)
+                //Toast.makeText(context, "Entró a B", Toast.LENGTH_SHORT).show()
+            }
         }
-
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
