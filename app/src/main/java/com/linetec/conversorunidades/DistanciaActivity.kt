@@ -2,10 +2,13 @@ package com.linetec.conversorunidades
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,12 +36,26 @@ class DistanciaActivity : AppCompatActivity() {
     val imperial = arrayListOf("mi", "yd", "in")
     val medidas = arrayListOf("Metrico", "Imperial")
 
+    // km = kilometro
+    // m = metro
+    // cm = centimetro
+    // mm = milimetro
+    // mi = milla
+    // yd = yarda
+    // in = pulgada
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_distancia)
         val context = applicationContext
 
         val btnVolver = findViewById<Button>(R.id.btn_dist_volver)
+
+        val edA = findViewById<EditText>(R.id.et_dist_first)
+        val edB = findViewById<EditText>(R.id.et_dist_second)
+
+        var textA = ""
+        var textB = ""
 
         spinner1 = findViewById(R.id.sp_dist_1)
         spinner2 = findViewById(R.id.sp_dist_2)
@@ -133,6 +150,47 @@ class DistanciaActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        var textWatcherA: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                textA = editable.toString()
+                edB.setText(textA)
+            }
+        }
+
+        var textWatcherB: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                textB = editable.toString()
+                edA.setText(textB)
+            }
+        }
+        edA.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                edA.addTextChangedListener(textWatcherA)
+                edB.removeTextChangedListener(textWatcherB)
+                //Toast.makeText(context, "Entró a A", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        edB.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                edB.addTextChangedListener(textWatcherB)
+                edA.removeTextChangedListener(textWatcherA)
+                //Toast.makeText(context, "Entró a B", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 
@@ -199,7 +257,6 @@ class DistanciaActivity : AppCompatActivity() {
         }else {
             result = firstNum / secondNum
         }
-
 
         return result.toString()
     }

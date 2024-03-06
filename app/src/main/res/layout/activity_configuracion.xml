@@ -54,6 +54,7 @@
             android:text="idioma" />
 
         <Spinner
+            android:id="@+id/sp_config"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
