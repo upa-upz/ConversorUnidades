@@ -72,9 +72,11 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/et_dist_first"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Metros" />
+                    android:hint="Metros"
+                    android:inputType="number" />
 
                 <Spinner
                     android:id="@+id/sp_dist_2"
@@ -83,6 +85,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tx_dist_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mts"
@@ -112,20 +115,25 @@
                     android:orientation="vertical">
 
                     <Spinner
+                        android:id="@+id/sp_dist_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/et_dist_second"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Centimetros" />
+                        android:hint="Metros"
+                        android:inputType="number"/>
 
                     <Spinner
+                        android:id="@+id/sp_dist_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tx_dist_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cm"
