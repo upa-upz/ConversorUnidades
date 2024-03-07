@@ -1,5 +1,6 @@
 package com.linetec.conversorunidades
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,10 @@ class ConfiguracionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracion)
 
+        val sharedPreferences = getSharedPreferences("idiomas", Context.MODE_PRIVATE)
+
+        val valorRecuperado = sharedPreferences.getString("clave", "valorPredeterminado")
+
         spinner = findViewById(R.id.sp_config)
         adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,idiomas)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -33,7 +38,11 @@ class ConfiguracionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-
+                val editor = sharedPreferences.edit()
+                if (parent != null) {
+                    editor.putString("idioma", parent.selectedItem.toString())
+                }
+                editor.apply()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

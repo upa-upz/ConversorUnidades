@@ -31,7 +31,7 @@ class DistanciaActivity : AppCompatActivity() {
     private lateinit var textFirst:TextView
     private lateinit var textSecond:TextView
 
-    val default = arrayListOf("Eliga Opcion")
+    val default = arrayListOf("")
     val metrico = arrayListOf("km", "m", "cm", "mm")
     val imperial = arrayListOf("mi", "yd", "in")
     val medidas = arrayListOf("Metrico", "Imperial")
@@ -43,6 +43,9 @@ class DistanciaActivity : AppCompatActivity() {
     // mi = milla
     // yd = yarda
     // in = pulgada
+
+    var inputFormatA:String = ""
+    var inputFormatB:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +97,7 @@ class DistanciaActivity : AppCompatActivity() {
                 updateText("in",textFirst)
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // No se necesita implementación aquí
-            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {}
         }
         // ----------------- SPINNER 2 ---------------
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -109,9 +110,7 @@ class DistanciaActivity : AppCompatActivity() {
                 updateText(parentView.selectedItem.toString(),textFirst)
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // No se necesita implementación aquí
-            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {}
         }
         // ----------------- SPINNER 3 ---------------
         spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -126,9 +125,7 @@ class DistanciaActivity : AppCompatActivity() {
                 updateText("in",textSecond)
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // No se necesita implementación aquí
-            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {}
         }
         // ----------------- SPINNER 4 ---------------
         spinner4.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -141,9 +138,7 @@ class DistanciaActivity : AppCompatActivity() {
                 updateText(parentView.selectedItem.toString(),textSecond)
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // No se necesita implementación aquí
-            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {}
         }
         // -------------------------------------------
         btnVolver.setOnClickListener {
@@ -160,7 +155,9 @@ class DistanciaActivity : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable?) {
                 textA = editable.toString()
-                edB.setText(textA)
+                inputFormatA = spinner2.selectedItem.toString()
+                inputFormatB = spinner4.selectedItem.toString()
+                edB.setText(convertirValor(inputFormatA,inputFormatB,textA).toString())
             }
         }
 
@@ -173,24 +170,26 @@ class DistanciaActivity : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable?) {
                 textB = editable.toString()
-                edA.setText(textB)
+                inputFormatA = spinner2.selectedItem.toString()
+                inputFormatB = spinner4.selectedItem.toString()
+                edA.setText(convertirValor(inputFormatB,inputFormatA,textB).toString())
             }
         }
+
+        // Listeners de los EditText
         edA.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 edA.addTextChangedListener(textWatcherA)
                 edB.removeTextChangedListener(textWatcherB)
-                //Toast.makeText(context, "Entró a A", Toast.LENGTH_SHORT).show()
             }
         }
-
         edB.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 edB.addTextChangedListener(textWatcherB)
                 edA.removeTextChangedListener(textWatcherA)
-                //Toast.makeText(context, "Entró a B", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
 
@@ -221,47 +220,90 @@ class DistanciaActivity : AppCompatActivity() {
         text.setText(selectedItem)
     }
 
-    //Convertir de metrico a imperial
-    private fun convertMetricToImperial(formato:String, value:String){
-
-    }
-    private fun convertImperialToMetric(formato:String, value:String){
-
-    }
-    private fun convertMetricToMetric(value:String,initFormat:String,finalFormat:String):String{
+    private fun convertirValor(formatInput:String = "", formaOutput:String = "", value:String = "0.0"):Double{
         var result:Double = 0.0
+        var num:Double
 
-        var firstNum:Double = value.toDouble()
-        var secondNum:Double = 0.0
-
-        var firstValue:Int = 0
-        var secondValue:Int = 0
-
-        when (initFormat) {
-            "km" -> firstValue = 1
-            "m" -> firstValue = 10
-            "cm" -> firstValue = 100
-            "mm" -> firstValue = 1000
-            else -> firstValue = 0
-        }
-        when (finalFormat) {
-            "km" -> secondValue = 1
-            "m" -> secondValue = 10
-            "cm" -> secondValue = 100
-            "mm" -> secondValue = 1000
-            else -> secondValue = 0
-        }
-
-        if(firstValue > secondValue){
-            result = firstNum * secondNum
+        if(value == null || value == ""){
+            num = 0.0
         }else {
-            result = firstNum / secondNum
+            num = value.toDouble()
         }
 
-        return result.toString()
-    }
-    private fun convertImperialToImperial(){
+                //in = km
+        if(formatInput == "km"){
+            when(formaOutput){
+                "km" -> result = num
+                "m" -> result = num * 1000
+                "cm"-> result = num * 100000
+                "mm" -> result = num * 1000000
+                "mi" -> result = num / 1.609
+                "yd" -> result = num * 1094
+                "in" -> result = num * 39370
+            }
+        }else if(formatInput == "m"){
+            when(formaOutput){
+                "km" -> result = num /1000
+                "m" -> result = num
+                "cm"-> result = num * 100
+                "mm" -> result = num * 1000
+                "mi" -> result = num / 1609
+                "yd" -> result = num * 1.094
+                "in" -> result = num *  39.37
+            }
+        }else if(formatInput == "cm"){
+            when(formaOutput){
+                "km" -> result = num /100000
+                "m" -> result = num / 100
+                "cm"-> result = num
+                "mm" -> result = num * 10
+                "mi" -> result = num / 160900
+                "yd" -> result = num / 91.44
+                "in" -> result = num / 2.54
+            }
+        }else if(formatInput == "mm"){ // Milimetro
+            when(formaOutput){
+                "km" -> result = num /1000000 // kilometro
+                "metro" -> result = num / 1000 // Metro
+                "cm"-> result = num / 10 // Centimetro
+                "mm" -> result = num // Milimetro
+                "mi" -> result = num / 1609000 // Milla
+                "yd" -> result = num / 914.4 // Yarda
+                "in" -> result = num / 25.4 // Pulgada
+            }
+        }else if(formatInput == "mi"){ // Milla
+            when(formaOutput){
+                "km" -> result = num * 1.609  // kilometro
+                "m" -> result = num * 1609 // Metro
+                "cm"-> result = num * 160900 // Centimetro
+                "mm" -> result = num * 1609000 // Milimetro
+                "mi" -> result = num // Milla
+                "yd" -> result = num * 1760 // Yarda
+                "in" -> result = num * 1760 // Pulgada
+            }
+        }else if(formatInput == "yd"){ // Yarda
+            when(formaOutput){
+                "km" -> result = num / 1094 // kilometro
+                "m" -> result = num / 1.094 // Metro
+                "cm"-> result = num * 91.44 // Centimetro
+                "mm" -> result = num * 914.4 // Milimetro
+                "mi" -> result = num / 914.4 // Milla
+                "yd" -> result = num // Yarda
+                "in" -> result = num / 25.4 // Pulgada
+            }
+        }else if(formatInput == "in"){
+            when(formaOutput){
+                "km" -> result = num / 39370
+                "m" -> result = num / 39.37
+                "cm"-> result = num / 2.54
+                "mm" -> result = num * 25.4
+                "mi" -> result = num / 63360
+                "yd" -> result = num / 36
+                "in" -> result = num
+            }
+        }
 
+        return  result
     }
 
 }
