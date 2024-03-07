@@ -67,20 +67,24 @@
                 android:orientation="vertical">
 
                 <Spinner
+                    android:id="@+id/sp_peso_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/et_peso_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Kilogramos" />
 
                 <Spinner
+                    android:id="@+id/sp_peso_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_peso_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kg"
@@ -110,20 +114,24 @@
                     android:orientation="vertical">
 
                     <Spinner
+                        android:id="@+id/sp_peso_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/et_peso_second"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Kilogramos" />
 
                     <Spinner
+                        android:id="@+id/sp_peso_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_peso_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kg"

@@ -16,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class DistanciaActivity : AppCompatActivity() {
 
-    //var sipinner1_selected = ""
-
     private lateinit var spinner1: Spinner
     private lateinit var spinner2: Spinner
     private lateinit var spinner3: Spinner
@@ -44,13 +42,13 @@ class DistanciaActivity : AppCompatActivity() {
     // yd = yarda
     // in = pulgada
 
-    var inputFormatA:String = ""
-    var inputFormatB:String = ""
+    private var inputFormatA:String = ""
+    private var inputFormatB:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_distancia)
-        val context = applicationContext
+        //val context = applicationContext
 
         val btnVolver = findViewById<Button>(R.id.btn_dist_volver)
 
