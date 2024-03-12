@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">UnitConverter</string>
     <string name="app_volver_btn">Back</string>
+    <string name="temperature_title">Temperatura</string>
 </resources>

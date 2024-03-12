@@ -19,7 +19,7 @@
             android:id="@+id/btn_dist_volver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver" />
+            android:text="@string/app_volver_btn" />
 
     </LinearLayout>
 
