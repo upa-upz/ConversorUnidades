@@ -4,11 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Thread.sleep(800)
+        screenSplash.setKeepOnScreenCondition{ false }
 
         val btnConfig = findViewById<Button>(R.id.btn_menu_config)
         val btnPeso = findViewById<Button>(R.id.btn_menu_peso)

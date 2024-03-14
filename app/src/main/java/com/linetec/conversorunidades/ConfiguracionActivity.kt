@@ -13,6 +13,7 @@ import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 
 class ConfiguracionActivity : AppCompatActivity() {
 
@@ -44,18 +45,27 @@ class ConfiguracionActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        //switch = findViewById(R.id.sw_config)
-
         cargarDatos()
 
-        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+        /*switch.setOnCheckedChangeListener { _, isSelected ->
+            if (isSelected) {
+                // Seleccionado
+                enableDarkMode()
+            } else {
+                // No Seleccionado
+                disableDarkMode()
+            }
+            recreate()
+        }*/
+
+        /*switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 modoOscuro = true
             }else{
                 modoOscuro = false
             }
             guardarModoNoche(modoOscuro)
-        }
+        }*/
 
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -84,12 +94,12 @@ class ConfiguracionActivity : AppCompatActivity() {
         var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
         val idiomaActual = sharedPreferences.getString("idioma", "")
         val idioma:Int
-        if(idiomaActual == null){
+        /*if(idiomaActual == null){
             idioma = 0
         }else {
             idioma = idiomaActual.toInt()
         }
-        spinner.setSelection(idioma)
+        spinner.setSelection(idioma)*/
 
         // Cargar Modo Nocturno
         sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
@@ -109,5 +119,14 @@ class ConfiguracionActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putBoolean("modoNoche",modoOscuro)
         editor.apply()
+    }
+
+    private fun enableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        delegate.applyDayNight()
+    }
+    private fun disableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        delegate.applyDayNight()
     }
 }
