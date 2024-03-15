@@ -20,7 +20,7 @@
             android:id="@+id/btn_temp_volver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_volver_btn" />
+            android:text="Volver" />
     </LinearLayout>
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:text="@string/temperature_title"
+        android:text="@string/temp_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

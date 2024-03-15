@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UnitConverter</string>
-    <string name="app_volver_btn">Back</string>
-    <string name="temperature_title">Temperatura</string>
+    // Idioma Ingles
+    //--- App
+    <string name="app_name">ConverterUnits</string>
+    //--- Main Menu Activity
+    <string name="menu_title">Tools</string>
+    <string name="menu_subtitle">Unit Converter</string>
+    <string name="menu_peso_btn">Weight</string>
+    <string name="menu_distancia_btn">Distance</string>
+    <string name="menu_temperatura_btn">Temperature</string>
+    //--- Peso Activity
+    <string name="peso_title">Weight</string>
+    <string name="peso_subtitle">Enter the Values</string>
+    //--- Distacia Activity
+    <string name="dist_title">Distance</string>
+    <string name="dist_subtitle">Enter the Values</string>
+    //--- Temperatura Activity
+    <string name="temp_title">Temperature</string>
+    <string name="temp_subtitle">Enter the Values</string>
+    //--- Configuracion Activity
+    <string name="conf_modo_oscuro">Dark Mode</string>
+    <string name="conf_idioma">Language</string>
+    <string name="conf_version">Version</string>
 </resources>

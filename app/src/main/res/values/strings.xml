@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    // Idioma Español
+    //--- App
     <string name="app_name">ConversorUnidades</string>
-    <string name="app_volver_btn">Vovler</string>
-    <string name="temperature_title">Temperatura</string>
+    //--- Main Menu Activity
+    <string name="menu_title">Herramientas</string>
+    <string name="menu_subtitle">Coversor de Unidades</string>
+    <string name="menu_peso_btn">Peso</string>
+    <string name="menu_distancia_btn">Distancia</string>
+    <string name="menu_temperatura_btn">Temperatura</string>
+    //--- Peso Activity
+    <string name="peso_title">Peso</string>
+    <string name="peso_subtitle">Introduzca los Valores</string>
+    //--- Distacia Activity
+    <string name="dist_title">Distancia</string>
+    <string name="dist_subtitle">Introduzca los Valores</string>
+    //--- Temperatura Activity
+    <string name="temp_title">Temperatura</string>
+    <string name="temp_subtitle">Introduzca los Valores</string>
+    //--- Configuracion Activity
+    <string name="conf_modo_oscuro">Modo Oscuro</string>
+    <string name="conf_idioma">Idioma</string>
+    <string name="conf_version">Version</string>
 </resources>

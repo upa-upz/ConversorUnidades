@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //---- Genericos
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="my_dark_primary">#373737</color>
-    <color name="my_dark_text">#FBFAFA</color>
+
+    //---- Modo Dia
+    <color name="light_background">#E1DEE9</color>
+    <color name="light_primary">#D5CFE1</color>
+    <color name="light_secondary">#A09ABC</color>
+    <color name="light_btn">#B6A6CA</color>
+
+    //---- Modo Noche
+    <color name="dark_background">#423F48</color>
+    <color name="dark_primary">#8A819B</color>
+    <color name="dark_secondary">#D5CFE1</color>
+    <color name="dark_btn">#423F48</color>
 </resources>

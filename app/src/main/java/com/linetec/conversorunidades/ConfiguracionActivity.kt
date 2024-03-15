@@ -2,6 +2,7 @@ package com.linetec.conversorunidades
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,8 +13,10 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import java.util.Locale
 
 class ConfiguracionActivity : AppCompatActivity() {
 
@@ -28,6 +31,8 @@ class ConfiguracionActivity : AppCompatActivity() {
 
     var modoOscuro:Boolean = false
     var idioma:String = "0"
+
+    var isUserInteracted:Boolean = false
 
 
     val idiomas = arrayListOf<String>("Español", "Ingles", "Portuges")
@@ -58,15 +63,6 @@ class ConfiguracionActivity : AppCompatActivity() {
             recreate()
         }*/
 
-        /*switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
-                modoOscuro = true
-            }else{
-                modoOscuro = false
-            }
-            guardarModoNoche(modoOscuro)
-        }*/
-
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -76,8 +72,21 @@ class ConfiguracionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                guardarLenguaje(position.toString())
-                Toast.makeText(this@ConfiguracionActivity,idiomas[position],Toast.LENGTH_SHORT).show()
+                /*if(isUserInteracted){
+                    //guardarLenguaje(position.toString())
+                    Toast.makeText(this@ConfiguracionActivity,idiomas[position],Toast.LENGTH_SHORT).show()
+                    when (position) {
+                        0 -> setLocale("es")
+                        1 -> setLocale("en")
+                        2 -> setLocale("pt")
+                    }
+                }
+                isUserInteracted = true*/
+
+                /*if(defaultIdioma == parent.){
+
+                }*/
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -91,9 +100,9 @@ class ConfiguracionActivity : AppCompatActivity() {
 
     private fun cargarDatos() {
         // Cargar Idioma
-        var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
+        /*var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
         val idiomaActual = sharedPreferences.getString("idioma", "")
-        val idioma:Int
+        val idioma:Int*/
         /*if(idiomaActual == null){
             idioma = 0
         }else {
@@ -102,9 +111,9 @@ class ConfiguracionActivity : AppCompatActivity() {
         spinner.setSelection(idioma)*/
 
         // Cargar Modo Nocturno
-        sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
+        /*sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
         var modoNoche = sharedPreferences.getBoolean("modoNoche",false)
-        switch.setChecked(modoNoche)
+        switch.setChecked(modoNoche)*/
     }
     private fun guardarLenguaje(value:String) {
         idioma = value
@@ -128,5 +137,14 @@ class ConfiguracionActivity : AppCompatActivity() {
     private fun disableDarkMode(){
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         delegate.applyDayNight()
+    }
+
+    fun setLocale(localeName: String) {
+        val locale = Locale(localeName)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        recreate()
     }
 }

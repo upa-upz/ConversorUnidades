@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ConversaoUnidades</string>
-    <string name="app_volver_btn">Eh voce atra</string>
-    <string name="temperature_title">Temperatura</string>
+    // Idioma Portuges
+    //--- App
+    <string name="app_name">UnidadesConversoras</string>
+    //--- Main Menu Activity
+    <string name="menu_title">Ferramentas</string>
+    <string name="menu_subtitle">Conversor de Unidades</string>
+    <string name="menu_peso_btn">Peso</string>
+    <string name="menu_distancia_btn">Distância</string>
+    <string name="menu_temperatura_btn">Temperatura</string>
+    //--- Peso Activity
+    <string name="peso_title">Peso</string>
+    <string name="peso_subtitle">Insira os Valores</string>
+    //--- Distacia Activity
+    <string name="dist_title">Distancia</string>
+    <string name="dist_subtitle">Insira os Valores</string>
+    //--- Temperatura Activity
+    <string name="temp_title">Temperatura</string>
+    <string name="temp_subtitle">Insira os Valores</string>
+    //--- Configuracion Activity
+    <string name="conf_modo_oscuro">Modo Escuro</string>
+    <string name="conf_idioma">Linguagem</string>
+    <string name="conf_version">Versão</string>
 </resources>
