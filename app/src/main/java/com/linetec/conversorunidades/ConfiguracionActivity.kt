@@ -52,16 +52,17 @@ class ConfiguracionActivity : AppCompatActivity() {
 
         cargarDatos()
 
-        /*switch.setOnCheckedChangeListener { _, isSelected ->
-            if (isSelected) {
+        switch.setOnCheckedChangeListener { _, isSelected ->
+            guardarModoNoche(isSelected)
+            /*if (isSelected) {
                 // Seleccionado
                 enableDarkMode()
             } else {
                 // No Seleccionado
                 disableDarkMode()
             }
-            recreate()
-        }*/
+            recreate()*/
+        }
 
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -72,6 +73,7 @@ class ConfiguracionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
+                guardarLenguaje(position.toString())
                 /*if(isUserInteracted){
                     //guardarLenguaje(position.toString())
                     Toast.makeText(this@ConfiguracionActivity,idiomas[position],Toast.LENGTH_SHORT).show()
@@ -93,27 +95,28 @@ class ConfiguracionActivity : AppCompatActivity() {
         }
 
         btnVover.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
+            /*val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)*/
         }
     }
 
     private fun cargarDatos() {
         // Cargar Idioma
-        /*var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
+        var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
         val idiomaActual = sharedPreferences.getString("idioma", "")
-        val idioma:Int*/
-        /*if(idiomaActual == null){
+        val idioma:Int
+        if(idiomaActual == null){
             idioma = 0
         }else {
             idioma = idiomaActual.toInt()
         }
-        spinner.setSelection(idioma)*/
+        spinner.setSelection(idioma)
 
         // Cargar Modo Nocturno
-        /*sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
         var modoNoche = sharedPreferences.getBoolean("modoNoche",false)
-        switch.setChecked(modoNoche)*/
+        switch.setChecked(modoNoche)
     }
     private fun guardarLenguaje(value:String) {
         idioma = value
