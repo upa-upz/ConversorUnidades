@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,7 +18,7 @@ class TemperaturaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_temperatura)
 
-        val btnVolver = findViewById<Button>(R.id.btn_temp_volver)
+        val btnVolver = findViewById<ImageButton>(R.id.btn_temp_volver)
         val edA = findViewById<EditText>(R.id.ed_temp_a)
         val edB = findViewById<EditText>(R.id.ed_temp_b)
 

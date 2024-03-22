@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_background"
     tools:context=".DistanciaActivity">
 
     <LinearLayout
@@ -15,11 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_dist_volver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver" />
+            android:background="@color/light_background"
+            android:padding="20dp"
+            android:src="@drawable/ic_flecha" />
 
     </LinearLayout>
 
@@ -28,8 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:textSize="30sp"
         android:text="Distancia"
+        android:textColor="@color/light_secondary"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -40,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Introducir Valores"
+        android:textColor="@color/light_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -55,91 +60,146 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="40dp"
+            android:backgroundTint="@color/light_primary"
+            app:cardCornerRadius="20dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <Spinner
                     android:id="@+id/sp_dist_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/et_dist_first"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Metros"
-                    android:inputType="number" />
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/edittext_shape_1"
+                    android:paddingVertical="5dp"
+                    android:textAlignment="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/edittext_shape_1"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <EditText
+                        android:id="@+id/et_dist_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="Metros"
+                        android:inputType="numberDecimal"
+                        android:paddingVertical="5dp"
+                        android:textColor="@color/light_btn"
+                        android:textColorHint="@color/light_btn"
+                        android:textCursorDrawable="@color/light_btn" />
+
+                    <TextView
+                        android:id="@+id/tx_dist_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mts"
+                        android:textColor="@color/light_btn"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
                 <Spinner
                     android:id="@+id/sp_dist_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_shape_1"
+                    android:paddingVertical="5dp"
+                    android:textAlignment="center" />
+
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tx_dist_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mts"
-                android:textSize="15sp" />
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="="
-            android:textSize="56sp" />
+            android:textColor="@color/light_secondary"
+            android:textSize="60dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="40dp"
+            android:backgroundTint="@color/light_primary"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginVertical="20dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/sp_dist_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/edittext_shape_1"
+                    android:paddingVertical="5dp"
+                    android:textAlignment="center" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/sp_dist_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/edittext_shape_1"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
 
                     <EditText
                         android:id="@+id/et_dist_second"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Metros"
-                        android:inputType="number"/>
-
-                    <Spinner
-                        android:id="@+id/sp_dist_4"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="Metros"
+                        android:inputType="numberDecimal"
+                        android:paddingVertical="5dp"
+                        android:textColor="@color/light_btn"
+                        android:textColorHint="@color/light_btn"
+                        android:textCursorDrawable="@color/light_btn"/>
+
+                    <TextView
+                        android:id="@+id/tx_dist_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cm"
+                        android:textColor="@color/light_secondary"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tx_dist_second"
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:id="@+id/sp_dist_4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cm"
-                    android:textSize="15sp" />
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/edittext_shape_1"
+                    android:paddingVertical="5dp"
+                    android:textAlignment="center" />
             </LinearLayout>
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

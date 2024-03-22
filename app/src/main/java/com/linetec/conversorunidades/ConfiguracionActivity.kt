@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.TextView
@@ -36,14 +37,14 @@ class ConfiguracionActivity : AppCompatActivity() {
 
 
     val idiomas = arrayListOf<String>("Español", "Ingles", "Portuges")
-    private lateinit var btnVover: Button
+    private lateinit var btnVover: ImageButton
     //private lateinit var modoNoche:Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracion)
 
-        btnVover = findViewById<Button>(R.id.btn_config_volver)
+        btnVover = findViewById<ImageButton>(R.id.btn_config_volver)
         switch = findViewById(R.id.sw_config)
         spinner = findViewById(R.id.sp_config)
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, idiomas)

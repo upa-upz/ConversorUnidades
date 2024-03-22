@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 
@@ -45,7 +46,7 @@ class PesoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_peso)
 
-        val btnVolver = findViewById<Button>(R.id.btn_peso_volver)
+        val btnVolver = findViewById<ImageButton>(R.id.btn_peso_volver)
 
         val edA = findViewById<EditText>(R.id.et_peso_first)
         val edB = findViewById<EditText>(R.id.et_peso_second)
@@ -186,9 +187,9 @@ class PesoActivity : AppCompatActivity() {
         btnVolver.setOnClickListener {
             val intent= Intent(this,MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
-
 
     private fun updateSecondSpinnerOptions(selectedItem: String) {
         val options: List<String> = when (selectedItem) {

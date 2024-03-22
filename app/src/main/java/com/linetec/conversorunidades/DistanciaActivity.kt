@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -50,7 +51,7 @@ class DistanciaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_distancia)
         //val context = applicationContext
 
-        val btnVolver = findViewById<Button>(R.id.btn_dist_volver)
+        val btnVolver = findViewById<ImageButton>(R.id.btn_dist_volver)
 
         val edA = findViewById<EditText>(R.id.et_dist_first)
         val edB = findViewById<EditText>(R.id.et_dist_second)
