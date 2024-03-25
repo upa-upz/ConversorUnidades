@@ -1,0 +1,13 @@
+<!-- spinner_dropdown_item.xml -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:textColor="@color/light_background"
+    android:background="@color/light_btn"
+    android:textAlignment="center"
+    android:padding="5dp"/>

@@ -3,4 +3,16 @@
     <style name="Base.Theme.ConversorUnidades" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/rubik_regular</item>
     </style>
+
+    <!-- Dark Mode -->
+    <style name="SCREEN">
+        <item name="android:background">@color/dark_background</item>
+    </style>
+    <style name="TEXT">
+        <item name="android:textColor">@color/light_background</item>
+    </style>
+    <style name="IMAGEBUTTON">
+        <item name="android:background">@color/dark_background</item>
+        <item name="android:tint">@color/light_background</item>
+    </style>
 </resources>

@@ -2,9 +2,12 @@ package com.linetec.conversorunidades
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
@@ -29,9 +32,12 @@ class ConfiguracionActivity : AppCompatActivity() {
     var leguajeSeleccionado: String = ""
     var leguajeApp: String = ""
     var position:Int = 0
+    var flag = true
+    private lateinit var versionText:TextView
 
     var modoOscuro:Boolean = false
     var idioma:String = "0"
+    var nightMode:Boolean = true
 
     var isUserInteracted:Boolean = false
 
@@ -43,28 +49,29 @@ class ConfiguracionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracion)
+        var versionName = getVersionName()
 
         btnVover = findViewById<ImageButton>(R.id.btn_config_volver)
         switch = findViewById(R.id.sw_config)
         spinner = findViewById(R.id.sp_config)
-        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, idiomas)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter = ArrayAdapter(this, R.layout.spinner_item, idiomas)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinner.adapter = adapter
+        versionText = findViewById(R.id.tv_conf_version)
 
         cargarDatos()
 
-        switch.setOnCheckedChangeListener { _, isSelected ->
-            guardarModoNoche(isSelected)
-            /*if (isSelected) {
-                // Seleccionado
-                enableDarkMode()
-            } else {
-                // No Seleccionado
-                disableDarkMode()
-            }
-            recreate()*/
-        }
+        versionText.text = "v$versionName"
 
+        switch.setOnClickListener {
+            if(switch.isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                guardarModoNoche(true)
+            }else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                guardarModoNoche(false)
+            }
+        }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -74,46 +81,30 @@ class ConfiguracionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                guardarLenguaje(position.toString())
-                /*if(isUserInteracted){
-                    //guardarLenguaje(position.toString())
-                    Toast.makeText(this@ConfiguracionActivity,idiomas[position],Toast.LENGTH_SHORT).show()
-                    when (position) {
-                        0 -> setLocale("es")
-                        1 -> setLocale("en")
-                        2 -> setLocale("pt")
-                    }
-                }
-                isUserInteracted = true*/
-
-                /*if(defaultIdioma == parent.){
-
-                }*/
-
+                var selectedLang: String = idiomas[position]
+                updateLenguaje(selectedLang)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         btnVover.setOnClickListener {
-            finish()
             /*val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)*/
+            finish()
         }
     }
 
     private fun cargarDatos() {
         // Cargar Idioma
         var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
-        val idiomaActual = sharedPreferences.getString("idioma", "")
+        val idiomaActual = sharedPreferences.getString("idioma", "0")
         val idioma:Int
-        if(idiomaActual == null){
+        /*if(idiomaActual == null){
             idioma = 0
         }else {
             idioma = idiomaActual.toInt()
-        }
-        spinner.setSelection(idioma)
-
+        }*/
+        spinner.setSelection(0)
         // Cargar Modo Nocturno
         sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
         var modoNoche = sharedPreferences.getBoolean("modoNoche",false)
@@ -133,22 +124,28 @@ class ConfiguracionActivity : AppCompatActivity() {
         editor.putBoolean("modoNoche",modoOscuro)
         editor.apply()
     }
-
-    private fun enableDarkMode(){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        delegate.applyDayNight()
+    private fun getVersionName(): String {
+        return try {
+            val packageInfo = packageManager.getPackageInfo(packageName, 0)
+            packageInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            "N/A"
+        }
     }
-    private fun disableDarkMode(){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        delegate.applyDayNight()
-    }
 
-    fun setLocale(localeName: String) {
-        val locale = Locale(localeName)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-        recreate()
+    private fun updateLenguaje(lang:String){
+        guardarLenguaje(lang)
+
+        var locale = when (lang) {
+            "Ingles" -> Locale("en")
+            "Español" -> Locale("es")
+            "Portuges" -> Locale("pt")
+            else -> Locale.getDefault()
+        }
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        this.createConfigurationContext(configuration)
+
     }
 }

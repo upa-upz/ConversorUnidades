@@ -8,10 +8,23 @@
 
     <style name="Theme.ConversorUnidades" parent="Base.Theme.ConversorUnidades" />
 
+    <!-- SPLASH SCREEN-->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/light_background</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_santy</item>
         <item name="windowSplashScreenAnimationDuration">300</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.ConversorUnidades</item>
+    </style>
+
+    <!-- Light Mode -->
+    <style name="SCREEN">
+        <item name="android:background">@color/light_background</item>
+    </style>
+    <style name="TEXT">
+        <item name="android:textColor">@color/light_btn</item>
+    </style>
+    <style name="IMAGEBUTTON">
+        <item name="android:background">@color/light_background</item>
+        <item name="android:tint">@color/light_btn</item>
     </style>
 </resources>
