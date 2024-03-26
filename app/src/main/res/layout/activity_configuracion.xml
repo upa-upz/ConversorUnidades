@@ -50,7 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_config">
+        app:layout_constraintTop_toBottomOf="@+id/sw_config"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_conf_idioma"

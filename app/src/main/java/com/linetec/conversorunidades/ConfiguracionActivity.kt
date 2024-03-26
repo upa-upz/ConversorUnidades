@@ -1,9 +1,11 @@
 package com.linetec.conversorunidades
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -73,20 +75,6 @@ class ConfiguracionActivity : AppCompatActivity() {
             }
         }
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                var selectedLang: String = idiomas[position]
-                updateLenguaje(selectedLang)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-
         btnVover.setOnClickListener {
             /*val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)*/
@@ -97,26 +85,26 @@ class ConfiguracionActivity : AppCompatActivity() {
     private fun cargarDatos() {
         // Cargar Idioma
         var sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
-        val idiomaActual = sharedPreferences.getString("idioma", "0")
-        val idioma:Int
+        //val idiomaActual = sharedPreferences.getString("idioma", "0")
+        //val idioma:Int
         /*if(idiomaActual == null){
             idioma = 0
         }else {
             idioma = idiomaActual.toInt()
         }*/
-        spinner.setSelection(0)
+        //spinner.setSelection(idioma)
         // Cargar Modo Nocturno
         sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
         var modoNoche = sharedPreferences.getBoolean("modoNoche",false)
         switch.setChecked(modoNoche)
     }
-    private fun guardarLenguaje(value:String) {
+    /*private fun guardarLenguaje(value:String) {
         idioma = value
         val sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("idioma", idioma)
         editor.apply()
-    }
+    }*/
     private fun guardarModoNoche(value:Boolean){
         modoOscuro = value
         val sharedPreferences = getSharedPreferences("modoNoche",Context.MODE_PRIVATE)
@@ -134,8 +122,8 @@ class ConfiguracionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateLenguaje(lang:String){
-        guardarLenguaje(lang)
+    /*private fun updateLenguaje(lang:String){
+        //guardarLenguaje(lang)
 
         var locale = when (lang) {
             "Ingles" -> Locale("en")
@@ -146,6 +134,6 @@ class ConfiguracionActivity : AppCompatActivity() {
         val configuration = Configuration(resources.configuration)
         configuration.setLocale(locale)
         this.createConfigurationContext(configuration)
-
-    }
+        recreate()
+    }*/
 }
