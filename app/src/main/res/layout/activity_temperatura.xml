@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_background"
+    style="@style/SCREEN"
     android:padding="16dp"
     tools:context=".TemperaturaActivity">
 
@@ -21,7 +21,7 @@
             android:id="@+id/btn_temp_volver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/light_background"
+            style="@style/IMAGEBUTTON"
             android:padding="20dp"
             android:src="@drawable/ic_flecha" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/temp_title"
-        android:textColor="@color/light_secondary"
+        style="@style/TEXT"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Introducir Valores"
-        android:textColor="@color/light_secondary"
+        style="@style/TEXT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/light_primary"
+            style="@style/CARD"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -94,15 +94,14 @@
                         android:hint="Centigrados"
                         android:inputType="numberDecimal"
                         android:paddingVertical="5dp"
-                        android:textColor="@color/light_btn"
-                        android:textColorHint="@color/light_btn"
+                        style="@style/TEXT_DARK"
                         android:textCursorDrawable="@color/light_btn" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cº"
-                        android:textColor="@color/light_btn"
+                        style="@style/TEXT_DARK"
                         android:textSize="25sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -121,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/light_primary"
+            style="@style/CARD"
             app:cardCornerRadius="20dp"
             android:layout_marginBottom="10dp">
 
@@ -150,15 +149,14 @@
                         android:hint="Farenheigh"
                         android:inputType="numberDecimal"
                         android:paddingVertical="5dp"
-                        android:textColor="@color/light_btn"
-                        android:textColorHint="@color/light_btn"
+                        style="@style/TEXT_DARK"
                         android:textCursorDrawable="@color/light_btn" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fº"
-                        android:textColor="@color/light_btn"
+                        style="@style/TEXT_DARK"
                         android:textSize="25sp" />
                 </LinearLayout>
             </LinearLayout>

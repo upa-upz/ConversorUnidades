@@ -15,4 +15,17 @@
         <item name="android:background">@color/dark_background</item>
         <item name="android:tint">@color/light_background</item>
     </style>
+    <style name="MAINCARD">
+        <item name="android:background">@drawable/containt_shape_night_1</item>
+    </style>
+    <style name="BUTTON">
+        <item name="android:background">@drawable/btn_shape_night_1</item>
+    </style>
+    <style name="CARD">
+        <item name="android:backgroundTint">@color/light_btn</item>
+    </style>
+    <style name="TEXT_DARK">
+        <item name="android:textColor">@color/dark_btn</item>
+        <item name="android:textColorHint">@color/dark_btn</item>
+    </style>
 </resources>
