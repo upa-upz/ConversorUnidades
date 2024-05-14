@@ -3,6 +3,6 @@
 Practica de Apliacacion de un conversor de unidades.
 Hecho en Kotlin y Figma.
 
-![preview 1 del proyecto]()
+![preview 1 del proyecto](img_1) ![preview 2 del proyecto](img_2)
 
-![preview 2 del proyecto]()
+
